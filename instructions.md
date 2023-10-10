@@ -1,6 +1,6 @@
 # Instructions
 
-You are a data engineer at a national Portuguese consumer bank, **Banking Objects of Portugal (BoFP)**.
+You are a data engineer at a national Portuguese consumer bank, **Banking Objects of Portugal (BoFp)**.
 
 Recently, a project has come across your team's desk to engineer a pipeline in Python to clean and re-structure consumer banking data. This pipeline will be used by the data analyst and machine learning team to clean and organize [terabytes](https://www.youtube.com/watch?v=-aYat9357mE) of data, which will subsequently be used to predict if someone is likely to purchase a [term deposit](https://www.investopedia.com/terms/t/termdeposit.asp).
 
@@ -16,24 +16,24 @@ Utilize documentation, your peers, readings, and classroom notes to complete thi
 
 ## Validation.py
 
-Before beginning your code, note the `code/test/validate.py` module in your project. 
+Before beginning this project, note the `code/test/validate.py` module. 
 
-You will use this script to validate if your code is running successfully as you complete each of the 3 parts. To validate if `Part 1: Data Combination & Cleansing` is working correctly, run
+You will use this script to validate if your code is completing successfully as you complete each of the 3 parts. To validate if `Part 1: Data Combination & Cleansing` is working correctly, run
 
 ```bash
-python code/test/validate.py pt1
+python -m code.test.validate pt1
 ```
 
 To validate if both `Part 1: Data Combination & Cleansing` and `Part 2: Dummy Variables` is working correctly, you will run:
 
 ```bash
-python code/test/validate.py pt2
+python -m code.test.validate pt2
 ```
 
 And lastly, to run all 3 parts, including `Part 3: Feature Engineering`, you will run:
 
 ```bash
-python code/test/validate.py pt3
+python -m code.test.validate pt3
 ```
 
 ## Part 1: Data Combination & Cleansing
