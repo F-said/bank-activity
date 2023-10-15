@@ -1,5 +1,5 @@
 """
-A validation script to check if your data-engineering pipeline is operating as
+A validation script to check if your data-analysis pipeline is operating as
 intended.
 
 To test the first part of your code, run:
@@ -20,9 +20,7 @@ The terminal output will tell you if your pipeline is successful.
 """
 import sys
 
-from code.clean01 import Cleaner
-from code.dummy02 import Dummify
-from code.eng03 import Transformer
+from code.StockMetrics import StockMetrics
 
 OKGREEN = '\033[92m'
 FAIL = '\033[91m'
@@ -30,82 +28,63 @@ ENDC = '\033[0m'
 BOLD = '\033[1m'
 UNDERLINE = '\033[4m'
 
+# Create a Metrics object
+metrics = StockMetrics(r"data\raw\amzn.csv")
+
 
 def pt1():
-    # Create Cleaner object
-    data = Cleaner(r"data\raw\bank.csv")
-
-    # try to clean data
+    # try to compute average
     try:
-        data.clean()
+        avg_list = metrics.average01()
     except Exception as e:
         print(f"{FAIL}PT1 fails: exception occured: {e}{ENDC}")
         return 0
 
-    # check if the balance type is float ($$$)
-    if data.df.balance.dtype != "float":
-        print(f"{FAIL}PT1 fails: Balance is not a float{ENDC}")
-        return 0
-    # check if we dropped unneeded columns
-    if set(["day", "month"]).issubset(set(data.df.columns)):
-        print(f"{FAIL}PT1 fails: Day, month, and duration columns still exist{ENDC}")
-        return 0
-    # check to see that our data sample is representative
-    if data.df.balance.max() > 60_000:
-        print(f"{FAIL}PT1 fails: Balance column still has values > 60,000{ENDC}")
+    # check if each row is correctly calculated
+    ans = [96.639, 89.749, 90.540, 95.844, 96.468,
+           101.187, 115.431, 118.949, 117.713]
+    if avg_list != ans:
+        print(f"{FAIL}PT1 fails: expected {ans}.\nRecieved {avg_list}{ENDC}")
         return 0
 
-    # confirm to tester that all looks good!
-    print(f"{OKGREEN}PT1 passes!{ENDC}")
+    print(f"{OKGREEN}PT1 passes! Nice work.{ENDC}")
     return 1
 
 
 def pt2():
-    # create Dummify object
-    data = Dummify(r"data\raw\bank.csv")
-
-    # try to run encode, and check if encoding was successful
+    # try to compute median
     try:
-        data.encode()
+        med_list = metrics.median02()
     except Exception as e:
         print(f"{FAIL}PT2 fails: exception occured: {e}{ENDC}")
         return 0
 
-    if data.df.shape != (45211, 29):
-        print(f"{FAIL}PT2 fails: 'job' & 'education' columns not properly encoded.{ENDC}")
+    ans = [96.2015, 90.030502, 91.5, 95.141502, 95.941498, 
+           101.359001, 115.384003, 119.680496, 118.635498]
+    if med_list != ans:
+        print(f"{FAIL}PT2 fails: expected {ans}.\nRecieved {med_list}{ENDC}")
         return 0
 
     # confirm to tester that all looks good!
-    print(f"{OKGREEN}PT2 passes!{ENDC}")
+    print(f"{OKGREEN}PT2 passes! Great job.{ENDC}")
     return 1
 
 
 def pt3():
-    # create Transformer
-    data = Transformer(r"data\raw\bank.csv")
-
-    # attempt to run transform method
+    # attempt to compute sample std-dev
     try:
-        data.transform()
+        dev_list = metrics.stddev03()
     except Exception as e:
         print(f"{FAIL}PT3 fails: exception occured: {e}{ENDC}")
         return 0
 
-    # check if y was renamed
-    if "purchase_term" not in data.df.columns or "y" in data.df.columns:
-        print(f"{FAIL}PT3 fails: 'y' column has not been renamed.{ENDC}")
-        return 0
-    # check if duration_year column was created
-    if "duration_year" not in data.df.columns:
-        print(f"{FAIL}PT3 fails: 'duration_year' not created.{ENDC}")
-        return 0
-    # check if duration_year was calculated correctly
-    if not data.df["duration_year"].equals(data.df["duration"]/365):
-        print(f"{FAIL}PT3 fails: 'duration_year' not properly calculated.{ENDC}")
+    ans = [1.571, 3.888, 3.652, 1.473, 1.301, 1.142, 4.643, 1.665, 1.742]
+    if dev_list != ans:
+        print(f"{FAIL}PT3 fails: expected {ans}.\nRecieved {dev_list}{ENDC}")
         return 0
 
     # confirm to tester that all looks good!
-    print(f"{OKGREEN}PT3 passes!{ENDC}")
+    print(f"{OKGREEN}PT3 passes! You're the 🐐{ENDC}")
     return 1
 
 
