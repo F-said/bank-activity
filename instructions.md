@@ -1,6 +1,6 @@
 # Instructions
 
-You are a data engineer at a national Portuguese consumer bank, **Banking Objects of Portugal (BOofP)**.
+You are a data engineer at a national Portuguese bank, **Banking Objects of Portugal (BOofP)**.
 
 Recently, a project has come across your team's desk to engineer a pipeline in Python to analyze stock data. This pipeline will be used by the machine learning team to restructure [terabytes](https://www.youtube.com/watch?v=-aYat9357mE) of data, which will subsequently be integrated with daily news headline data to measure how reliably [sentiment](https://aws.amazon.com/what-is/sentiment-analysis/) predicts stock price.
 
