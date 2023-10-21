@@ -19,4 +19,4 @@ jobs:
           python-version: 3.9 
 
       - name: Run validate.py
-        run: python code/test/validate.py
+        run: python -m code.test.validate pt3
