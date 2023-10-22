@@ -19,6 +19,7 @@ while in the `code/test` folder to test the completeness of your code.
 The terminal output will tell you if your pipeline is successful.
 """
 import sys
+import os
 
 from code.StockMetrics import StockMetrics
 
@@ -29,7 +30,8 @@ BOLD = '\033[1m'
 UNDERLINE = '\033[4m'
 
 # Create a Metrics object
-metrics = StockMetrics(r"..\data\raw\amzn.csv")
+print(os.getcwd())
+metrics = StockMetrics(r"\data\raw\amzn.csv")
 
 
 def pt1():
