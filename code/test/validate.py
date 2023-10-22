@@ -29,7 +29,7 @@ BOLD = '\033[1m'
 UNDERLINE = '\033[4m'
 
 # Create a Metrics object
-metrics = StockMetrics(r"..\..\data\raw\amzn.csv")
+metrics = StockMetrics(r"..\data\raw\amzn.csv")
 
 
 def pt1():
