@@ -31,7 +31,7 @@ UNDERLINE = '\033[4m'
 
 # Create a Metrics object
 print(os.listdir(os.getcwd()))
-metrics = StockMetrics(r"\data\raw\amzn.csv")
+metrics = StockMetrics(r"data\raw\amzn.csv")
 
 
 def pt1():
